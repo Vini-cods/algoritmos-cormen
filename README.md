@@ -1,57 +1,88 @@
-# Algoritmos - Cormen
+# Algoritmos — Estudos e Exercícios
 
-Repositório de estudos e exercícios da disciplina de **Algoritmos**, utilizando como referência o livro *Algoritmos: Teoria e Prática*, de Thomas H. Cormen et al.
+Repositório pessoal de estudos, exercícios e implementações desenvolvidos durante a disciplina de **Algoritmos** no curso de Ciência da Computação.
 
-O objetivo deste repositório é registrar a evolução dos exercícios, implementações e anotações desenvolvidas durante a disciplina.
+O conteúdo tem como referência principal o livro _Algoritmos: Teoria e Prática_, de Thomas H. Cormen et al., além dos materiais utilizados nas aulas.
 
-## Conteúdo
+> Este repositório registra meu processo de aprendizagem. Os códigos são implementações próprias feitas para estudo e prática.
 
-- **`lgn.py`** - exercício relacionado à comparação de tempos de execução para a função `lg n`.
-- **`01 - Algoritmos.pdf`** - material de referência utilizado na aula, quando autorizado para compartilhamento.
-- **`Resumo.pptx`** - material complementar da disciplina, quando autorizado para compartilhamento.
+## Estrutura
 
-## Sobre o exercício `lg n`
+| Arquivo                     | Tema                                                   |
+| --------------------------- | ------------------------------------------------------ |
+| `lgn.py`                    | Função `lg n` e conversão de tempo para microssegundos |
+| `comparacao_ordenacao.py`   | Comparação entre `8n²` e `64n lg n`                    |
+| `crescimento_algoritmos.py` | Comparação de diferentes funções de crescimento        |
+| `limites_execucao.py`       | Tamanho máximo de entrada para diferentes funções      |
+| `busca.py`                  | Busca linear e busca binária                           |
 
-No capítulo inicial, o Cormen utiliza a função `lg n` (logaritmo na base 2) para analisar o crescimento do tempo de execução de algoritmos. Em problemas desse tipo, o tempo disponível pode ser convertido para a unidade adotada no exercício e, a partir da relação
+A estrutura poderá ser ampliada conforme novos assuntos forem estudados na disciplina.
+
+## Conteúdo estudado
+
+### Funções de crescimento
+
+O material apresenta diferentes ordens de crescimento utilizadas na análise de algoritmos, incluindo:
 
 ```text
-lg n <= t
+lg n
+√n
+n
+n lg n
+n²
+n³
+2ⁿ
+n!
 ```
 
-obtemos:
+A ideia é observar como algoritmos diferentes podem apresentar comportamentos muito distintos à medida que o tamanho da entrada aumenta.
+
+### Comparação de algoritmos de ordenação
+
+Um dos exemplos compara a ordenação por inserção, com crescimento proporcional a `n²`, com a ordenação por intercalação, com crescimento proporcional a `n lg n`.
+
+No exercício implementado aqui, são utilizados os custos:
 
 ```text
-n <= 2^t
+Inserção:     8n²
+Intercalação: 64n lg n
 ```
 
-O programa `lgn.py` recebe uma quantidade de dias, converte o tempo para microssegundos e calcula a ordem de grandeza do maior `n` que poderia ser processado por um algoritmo cujo tempo de execução fosse `lg n` microssegundos.
+O programa calcula ambos para um valor de `n` informado pelo usuário e indica qual apresenta menor custo para aquela entrada.
 
-Como esse valor pode ser astronomicamente grande, o programa não tenta armazenar ou imprimir `2^t` por extenso. Em vez disso, apresenta uma aproximação em notação científica por meio de `log10(n)`.
+### Limites de execução
 
-## Execução
+Também são estudadas situações em que se deseja descobrir qual o maior tamanho de entrada que pode ser processado dentro de determinado tempo, considerando diferentes funções de crescimento.
+
+O programa `limites_execucao.py` transforma o tempo informado em microssegundos e calcula estimativas para funções como `lg n`, `n`, `n lg n`, `n²` e `n³`.
+
+Para funções de crescimento muito rápido, como `2ⁿ` e `n!`, o programa evita cálculos que produziriam valores impraticavelmente grandes.
+
+### Busca
+
+O arquivo `busca.py` implementa duas estratégias básicas:
+
+- **Busca linear:** `O(n)`
+- **Busca binária:** `O(log n)`
+
+A busca binária exige que os elementos estejam ordenados.
+
+## Como executar
 
 Requisitos:
 
-- Python 3.10+
+- Python 3.10 ou superior
 
-Execute:
+Exemplo:
 
 ```bash
 python lgn.py
-```
-
-Exemplo para 1 dia:
-
-```text
-Digite a quantidade de dias: 1
-
-Tempo disponível: 86400000000 microssegundos
-Para lg(n) <= t, temos n <= 2^t.
-
-log10(n) ≈ 2.600e+10
-n ≈ 10^(2.600e+10)
+python comparacao_ordenacao.py
+python crescimento_algoritmos.py
+python limites_execucao.py
+python busca.py
 ```
 
 ## Referência
 
-CORMEN, Thomas H.; LEISERSON, Charles E.; RIVEST, Ronald L.; STEIN, Clifford. *Algoritmos: Teoria e Prática*.
+CORMEN, Thomas H.; LEISERSON, Charles E.; RIVEST, Ronald L.; STEIN, Clifford. _Algoritmos: Teoria e Prática_.
